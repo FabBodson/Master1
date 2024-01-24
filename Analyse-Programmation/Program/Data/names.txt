@@ -1,0 +1,395 @@
+4-LOM
+Aayla Secura
+Admiral Ackbar
+Admiral Thrawn
+Ahsoka Tano
+Anakin Solo
+Asajj Ventress
+Aurra Sing
+Senator Bail Organa
+Barriss Offee
+Bastila Shan
+Ben Skywalker
+Bib Fortuna
+Biggs Darklighter
+Boba Fett
+Bossk
+Brakiss
+C-3PO
+Cad Bane
+Cade Skywalker
+Callista Ming
+Captain Rex
+Carnor Jax
+Chewbacca
+Clone Commander Cody
+Count Dooku
+Darth Bane
+Darth Krayt
+Darth Maul
+Darth Nihilus
+Darth Vader
+Dash Rendar
+Dengar
+Durge
+Emperor Palpatine
+Exar Kun
+Galen Marek
+General Crix Madine
+General Dodonna
+General Grievous
+General Veers
+Gilad Pellaeon
+Grand Moff Tarkin
+Greedo
+Han Solo
+IG 88
+Jabba The Hutt
+Jacen Solo
+Jaina Solo
+Jango Fett
+Jarael
+Jerec
+Joruus C'Baoth
+Ki-Adi-Mundi
+Kir Kanos
+Kit Fisto
+Kyle Katarn
+Kyp Durron
+Lando Calrissian
+Luke Skywalker
+Luminara Unduli
+Lumiya
+Mace Windu
+Mara Jade
+Mission Vao
+Natasi Daala
+Nom Anor
+Obi-Wan Kenobi
+Padmé Amidala
+Plo Koon
+Pre Vizsla
+Prince Xizor
+Princess Leia
+PROXY
+Qui-Gon Jinn
+Quinlan Vos
+R2-D2
+Rahm Kota
+Revan
+Satele Shan
+Savage Opress
+Sebulba
+Shaak Ti
+Shmi Skywalker
+Talon Karrde
+Ulic Qel-Droma
+Visas Marr
+Watto
+Wedge Antilles
+Yoda
+Zam Wesell
+Zayne Carrick
+Zuckuss
+Adrahil
+Adrahil II
+Aegnor
+Aerandir
+Aghan
+Aglahad
+Ailinel
+Alatar
+Aldamir
+Aldor
+Almarian
+Almiel
+Amandil
+Amdír
+Amlaith
+Amrod
+Amroth
+Anardil
+Anborn
+Ancalagon The Black
+Andróg
+Angbor
+Angelimar
+Angelimir
+Angrod
+Anarion
+Ar
+Adûnakhôr
+Ar
+Gimilzôr
+Ar
+Pharazôn
+Ar
+Sakalthôr
+Ar
+Zimrathôn
+Arador
+Araglas
+Aragorn I
+Aragorn IIElessar
+Aragost
+Arahad I
+Arahad II
+Arahael
+Aranarth
+Aranuir
+Araphant
+Araphor
+Arassuil
+Arathorn I
+Arathorn II
+Araval
+Aravir
+Aravorn
+Arciryas
+Aredhel
+Argeleb I
+Argeleb II
+Argonui
+Arien
+Artamir
+Arthad
+Arvedui
+Arvegil
+Arveleg I
+Arveleg II
+Arwen
+Asgon
+Atanamir
+Atanatar I
+Atanatar II
+Aulë
+Azaghâl
+Azog
+Bain
+Baldor
+Balin
+Barach
+Baragund
+Barahir
+Barahir
+Baran
+Bard II
+Bardthe Bowman
+Barliman Butterbur
+Beldis
+Belecthor I
+Belecthor II
+Beleg Cúthalion
+Belegof Arnor
+Belegorn
+Belegund
+Belemir
+Belen
+Beorn
+Beregond
+Beregond
+Beren
+Beren
+Bergil
+Bilbo Baggins
+Angelica Baggins
+Bilbo Baggins
+Fosco Baggins
+Bungo Baggins
+Frodo Baggins
+Longo Baggins
+Mungo Baggins
+Pansy Baggins
+Bill
+Blanco
+Bob
+Bofur
+Bolg
+Fredegar Bolger
+Tom Bombadil
+Bombur
+Borin
+Borlach
+Borlad
+Boromir
+Boromir
+Boromir
+Borthand
+Brand
+Amaranth Brandybuck
+Estella Brandybuck
+Madoc Brandybuck
+Meriadoc Brandybuck
+Brego
+Brodda
+Bungo Baggins
+Bëor
+Calimehtar
+Calmacil
+Captainsofthe West
+Caranthir
+Carc
+Carcharoth
+Castamirthe Usurper
+Celeborn
+Celebrimbor
+Celebrindor
+Celebrían
+Celegorm
+Celepharn
+Cemendur
+Cirion
+Ciryandil
+Ciryatur
+Ciryon
+Curufin
+Círdan
+Farmer Cotton
+Rosie Cotton
+Daeron
+Damrod
+Denethor
+Denethor I
+Denethor II
+Dervorin
+Dior
+Dior
+Dorlas
+Draugluin
+Duinhir
+Dwalin
+Dáin I
+Dáin IIIronfoot
+Déagol
+Déor
+Dírhael
+Dís
+Dúnhere
+Eärendil
+Ecthelion I
+Ecthelion II
+Ecthelionofthe Fountain
+Egalmoth Eilinel
+Elatan
+Elboron
+Eldacarof Gondor
+Eldalótë
+Eldarion
+Elemmakil
+Elendil
+Elfhild
+Elfwine
+Elladanand Elrohir
+Elmo
+Elrond
+Elros
+Elurédand Elurín
+Elwing
+Enel
+Enerdhil
+Éomer
+Eorlthe Young
+Eothain
+Éowyn
+Eradan
+Erchirion
+Erendis
+Erestor
+Erkenbrand
+Eru Ilúvatar
+Eärendil
+Eärendilof Gondor
+Eärendur
+Eärendurof Arnor
+Eärendurof Númenor
+Eärnil I
+Eärnil II
+Eärnur
+Eärwen
+Eöl
+Eönwë
+Faramir
+Fastred
+Fengel
+Finarfin
+Findegil
+Finduilas
+Finduilasof Dol Amroth
+Fingolfin
+Fingon
+Finrod Felagund
+Finwë
+Folca
+Folcred
+Folcwine
+Forlong
+Forthwini
+Fram
+Freca
+Frodo Baggins
+Frumgar
+Frár
+Fréa
+Frëawine
+Frór
+Fuinur
+Thráin I
+Thráin II
+Thrór
+Théoden
+Théodred
+Tilion
+Tom
+Bert
+William
+Tom Bombadil
+Adalgrim Took
+Bullroarer Took
+Adelard Took
+Goldilocks Took
+Peregrin Took
+Esmeralda Took
+Pimpernel Took
+Treebeard
+Tulkas
+Tuor
+Turambar
+Turgon
+Turgon
+Two Watchers
+Túrin I
+Túrin II
+Túrin Turambar
+Daddy Twofoot
+Ulbar
+Uglúk
+Uinen
+Uldor
+Ulfang
+Ulfast
+Ulmo
+Ulrad
+Ulwarth
+Ungoliant
+Vairë
+Valacar
+Valandil
+Valandilof Andúnië
+Varda
+Vardamir Nólimon
+Vidugavia
+Vidumavi
+Vorondilthe Hunter
+Voronwë
+Vána
+Vëantur
+Walda
+Wifeof Barach
+Witch
+kingof Angmar
+Wulf
+Yavanna
+Zamîn
+Ælfwine
+Îbal
+Óin

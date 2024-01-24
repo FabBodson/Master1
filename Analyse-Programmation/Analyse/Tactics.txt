@@ -1,0 +1,6 @@
+------------------------------------------------------------------------------------------------------------------------
+- Attaquer au hasard
+- Attaquer ceux qui ont le moins de points de vies
+- Attaquer les soigneurs en premier
+- Attaquer le type d'ennemis le moins représentés
+------------------------------------------------------------------------------------------------------------------------

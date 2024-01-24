@@ -1,0 +1,42 @@
+---
+- block:
+  - name: "Check si Docker a deja été uploadé"
+    stat:
+      path: "./Docker"
+    register: repo_already_there
+
+  - name: "Copie du contenu de Docker"
+    copy:
+      src: "Docker"
+      dest: "."
+      directory_mode:
+    when: not repo_already_there.stat.exists
+
+  - name: "Check si le réseau docker a deja ete cree"
+    docker_network_info:
+      name: traefik_network
+    register: network_exists
+
+  - name: "Create traefik_network"
+    raw: "docker network create traefik_network"
+    when: not network_exists.exists
+
+  - name: "Lancement des conteneurs"
+    community.docker.docker_compose:
+      project_src: "./Docker"
+      files:
+        - "docker-compose.yml"
+
+  - name: rebooting
+    reboot:
+      test_command: uptime
+
+  rescue:
+    - name: "Rescue message"
+      debug:
+        msg: "Erreur dans le deploiement des conteneurs"
+
+  always:
+    - name: "Message de fin d'exécution"
+      debug:
+        msg: "Fin de l'exécution"

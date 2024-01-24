@@ -1,0 +1,14 @@
+---
+# -- Parametres Samba AD -- 
+
+# Variables:
+   ad_repository     : 'default'                     # Le repo à utiliser
+   ad_role           : 'member'                      # Role dans Samba 
+   ad_workgroup      : 'SUPERCOMPTA'
+   ad_realm          : 'SUPERCOMPTA.COM'             # Le realm
+   ad_ou             : 'DC=supercompta,DC=com'
+   ad_dns_servers    : '192.168.254.38'              # IPv4 du DC qui servira de serveur DNS aussi
+   ad_dns_forwarders : '8.8.8.8,1.1.1.1'             # DNS forwarders
+   ad_username       : 'administrator'               # Compte admin
+   ad_password       : 'Passw0rd'                    # Mdp admin 
+

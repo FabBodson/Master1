@@ -1,0 +1,91 @@
+---
+- block:
+  - name: "Update des packages"
+    apt:
+      update_cache: yes
+      upgrade: yes
+      install_recommends: yes
+
+  - name: "Check si reboot necessaire"
+    register: reboot_required_file
+    stat: path=/var/run/reboot-required get_md5=no
+
+  - name: "Reboot de la VM si nécessaire"
+    reboot:
+      msg: "Reboot"
+      connect_timeout: 5
+      reboot_timeout: 300
+      pre_reboot_delay: 0
+      post_reboot_delay: 30
+      test_command: uptime
+    when: reboot_required_file.stat.exists
+
+  - name: "Installation des packages docker"
+    remote_user: fabrice
+    apt:
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+        - "apt-transport-https"
+        - "ca-certificates"
+        - "software-properties-common"
+        - "curl"
+        - "python3-docker"
+        - "docker-compose"
+        - "openjdk-17-jdk"
+
+  - name: "Clés GPG pour vérification de docker"
+    remote_user: fabrice
+    apt_key:
+      url: "https://download.docker.com/linux/ubuntu/gpg"
+      state: present
+
+  - name: "Verification de la clé gpg avec la signature"
+    remote_user: fabrice
+    apt_key:
+      id: 0EBFCD88
+      state: present
+
+  - name: "Telechargement du repo docker"
+    remote_user: fabrice
+    apt_repository:
+      repo: "deb https://download.docker.com/linux/debian bullseye stable"
+      state: present
+      update_cache: yes
+
+  - name: "Installation des packages docker"
+    remote_user: fabrice
+    apt:
+      name: "{{ packages }}"
+      state: present
+      update_cache: yes
+    vars:
+      packages:
+        - "docker-ce"
+        - "docker-ce-cli"
+        - "containerd.io"
+
+  - name: "Ajout de l'utilisateur distant au groupe docker"
+    remote_user: fabrice
+    user:
+      name: "fabrice"
+      group: "docker"
+      append: yes
+
+  - name: Install Docker Compose
+    get_url:
+      url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-Linux-x86_64"
+      dest: /usr/local/bin/docker-compose
+      mode: "u+x,g+x,o+x"
+
+  rescue:
+    - name: "Rescue d'erreur"
+      debug:
+        msg: "Erreur lors du déploiement des conteneurs"
+  always:
+    - name: "Message de fin d'exécuion"
+      debug:
+        msg: "Fin de l'exécution"
+

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Actions</title>
+
+</head>
+  <body>
+    <h1>Bienvenue</h1>
+    <p>Choisissez de modifier, d'ajouter ou de supprimer des utilisateurs</p>
+    <form action="/ajouterUser" method="POST">
+      <button type="submit">Ajouter</button>
+    </form>
+    <p></p>
+    <table>
+
+      <tr>
+        <td> Utilisateur </td>
+        <td> Membre de </td>
+        <td></td>
+      </tr>
+
+      <tr th:each="user: ${users}">
+        <td th:text="${user.getUsername()}"></td>
+        <td th:text="${user.getGroupe()}"></td>
+        <td>
+
+          <form action="/supprimerUser" method="POST">
+            <input name="username" type="hidden" th:value="${user.getUsername()}">
+            <button type="submit">Supprimer</button>
+          </form>
+
+          <form action="/modifierUser" method="POST">
+            <input name="username" type="hidden" th:value="${user.getUsername()}">
+            <button type="submit">Modifier</button>
+          </form>
+
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

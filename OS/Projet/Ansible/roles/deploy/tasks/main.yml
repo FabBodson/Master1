@@ -1,0 +1,203 @@
+---
+- block:
+# Mise en place avec la vérification de l'existence du domaine
+  - name: "Verifier si AD existe deja"
+    command: "samba-tool domain info {{ ad_dns_servers }}"
+    register: ad_exists
+    ignore_errors: yes
+
+# Mise en place de la version de Kerberos
+  - name: "Choisir la version 5 de Kerberos"
+    command: "echo krb5-config krb5-config/default_realm string {{ ad_realm }} | sudo debconf-set-selections"
+    when:
+      - ad_exists.failed == true
+
+  - name: "Choisir le version 5 de Kerberos"
+    command: "echo krb5-config krb5-config/add_servers_realm string {{ ad_realm }} | sudo debconf-set-selections"
+    when:
+      - ad_exists.failed == true
+
+# Services
+
+  - name: Upgrade Fedora
+    dnf:
+      name: "*"
+      state: latest
+    when:
+      - ad_exists.failed == true
+
+  - name: "Installer paquets"
+    dnf:
+      name: "{{ packages }}"
+      update_cache: yes
+      state: present
+    vars:
+      packages:
+      - samba
+      - samba-dc
+      - samba-client
+      - samba-winbind
+      - krb5-workstation
+      - bind-utils
+
+# Changer hostname
+  - name: "Changer hostname"
+    command: "hostnamectl hostname fedora.supercompta.com"
+
+  - name: "Couper les services"
+    systemd:
+      enabled: no
+      state: stopped
+      name: "{{ item }}" # Boucle sur les services définis juste après
+    with_items:
+      - samba.service
+      - systemd-resolved.service
+
+# Firewall
+  - name: "Add Samba AD ports to fw"
+    command: "firewall-cmd --permanent --add-service samba-dc"
+    notify: reload_firewall
+
+  - name: "SELinux"
+    command: "setsebool -P samba_create_home_dirs=on samba_domain_controller=on samba_enable_home_dirs=on samba_portmapper=on use_samba_home_dirs=on"
+    command: "restorecon -Rv /"
+
+# smb.conf 
+  - name: "Sauvegarde de /etc/samba/smb.conf"
+    copy:
+      src: /etc/samba/smb.conf
+      dest: /etc/samba/smb.conf.initial
+      remote_src: yes
+      force: no
+
+  - name: "Suppression de /etc/samba/smb.conf"
+    file:
+      path: /etc/samba/smb.conf
+      state: absent
+
+# Custom config
+  - name: "Creates for custom config"
+    file:
+      path: /etc/systemd/resolved.conf.d/
+      state: directory
+      owner: root
+      group: root
+      mode: 0775
+
+  - name: "Copy custom config"
+    copy:
+      src: custom.conf
+      dest: "/etc/systemd/resolved.conf.d/custom.conf"
+      mode: 0644
+      owner: root
+      group: root
+    notify: restart_systemd
+
+# Provisionning du domaine
+  - name: "Provisioning du domaine"
+    command: "samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm={{ ad_realm }} --domain={{ ad_workgroup }} --adminpass={{ ad_password }}"
+
+# Recréer smb.conf et ajouter les certificats
+  - name: "Recreer samba conf"
+    copy:
+      src: smb.conf
+      dest: "/etc/samba/smb.conf"
+      mode: 0644
+      owner: root
+      group: root
+
+  - name: "creation du repo tls"
+    file:
+      path: /etc/samba/tls/
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+
+  - name: "Ajout du certificat"
+    copy:
+      src: myCert.pem
+      dest: "/etc/samba/tls/myCert.pem"
+      mode: 0644
+      owner: root
+      group: root
+
+  - name: "Ajout de la clé"
+    copy:
+      src: myKey.pem
+      dest: "/etc/samba/tls/myKey.pem"
+      mode: 0600
+      owner: root
+      group: root
+
+# Kerberos
+  - name: "Sauvegarde de /etc/krb5.conf"
+    copy:
+      src: /etc/krb5.conf
+      dest: /etc/krb5.conf.initial
+      remote_src: yes
+      force: no
+
+  - name: "Copie du fichier krb5.conf"
+    copy:
+      src: krb5.conf
+      dest: /etc/krb5.conf.d/samba-dc
+      mode: 0644
+      owner: root
+      group: root
+
+  - name: "Ajouter resolv.conf"
+    copy:
+      src: resolv.conf
+      dest: /etc/resolv.conf
+      owner: root
+      group: root
+      mode: 0777
+    notify: "restart_all_services"
+
+  - name: "Copie du fichier des noms et prenoms d'utilisateurs pour le script"
+    copy:
+      src: list-of-users.csv
+      dest: ./list-of-users.csv
+      owner: fabrice
+      group: fabrice
+      mode: 0644
+
+  - name: "Copie du script de creation des utilisateurs"
+    copy:
+      src: mk-users-and-groups.py
+      dest: ./mk-users-and-groups.py
+      owner: fabrice
+      group: fabrice
+      mode: 0644
+
+  - name: "Execution du script"
+    command: "python3 mk-users-and-groups.py"
+
+  - name: "Ajout des records DNS"
+    command: "samba-tool dns zonecreate 192.168.254.42 0.168.192.in-addr.arpa --user={{ ad_username }} --password={{ ad_password }}"
+    command: "samba-tool dns add 192.168.254.42 supercompta.com {{item}} A 192.168.254.39 --user={{ ad_username }} --password={{ ad_password }}"
+    ignore_errors: True
+    loop:
+      - traefik
+      - gitlab
+      - nextcloud
+      - meet
+      - manage
+
+
+#  - name: rebooting
+ #   reboot:
+  #    test_command: uptime
+
+  rescue:
+    - name: "Rescue en cas d'erreur"
+      debug:
+        msg: "Erreur lors de la création de l'AD"
+
+  always:
+    - name: "Message de fin d'exécution"
+      debug:
+        msg: "Fin de l'exécution"
+
+

@@ -1,0 +1,7 @@
+[dnf]
+fedora ansible_host=192.168.254.38
+
+[dnf:vars]
+ansible_port=22 
+ansible_user=fabrice
+ansible_private_key=~/.ssh/ssh_ansible

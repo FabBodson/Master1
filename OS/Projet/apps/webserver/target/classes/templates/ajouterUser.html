@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  </head>
+  <style>
+          body{
+              text-align: center;
+              align-content: center;
+          }
+  </style>
+  <body>
+    <h1>
+      Ajout d'un utilisateur
+    </h1>
+
+    <form action="/userLdap" method="POST">
+
+      <label for="nom">Nom:</label><br>
+      <input type="text" id="nom" name="nom"><br>
+
+      <label for="prenom">Prenom:</label><br>
+      <input type="text" id="prenom" name="prenom"><br>
+
+      <fieldset>
+        <legend>Poste:</legend><br>
+        <input type="radio" name="groupe" value="management"/> Management<br/>
+        <input type="radio" name="groupe" value="technicien"/> Techniciens<br/>
+        <input type="radio" name="groupe" value="rh"/> RH<br/>
+        <input type="radio" name="groupe" value="comptable"/> Comptables<br/>
+      </fieldset>
+
+      <input type="submit" value="Ajouter">
+    </form>
+
+  </body>
+</html>

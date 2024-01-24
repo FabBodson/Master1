@@ -1,0 +1,7 @@
+---
+- name: "Samba AD deployement"
+  hosts: fedora
+  become: true
+  roles:
+    - role: deploy
+      tags: deploy

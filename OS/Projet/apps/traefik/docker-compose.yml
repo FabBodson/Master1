@@ -1,0 +1,33 @@
+version: "3"
+services:
+ traefik-test:
+  image: traefik:latest
+  container_name: traefik
+  restart: always
+  security_opt:
+   - no-new-privileges:true
+  ports:
+   - "80:80"
+   - "443:443"
+  volumes:
+   - /etc/localtime:/etc/localtime
+   - /var/run/docker.sock:/var/run/docker.sock
+   - ./data/traefik.yml:/traefik.yml
+   - ~/Docker/certs/acme.json:/acme.json
+   - ./data/configurations:/configurations
+  networks:
+   - traefik_network
+  labels:
+   - "traefik.enable=true"
+   - "traefik.docker.network=traefik_network"
+   - "traefik.http.routers.http-catchall.rule=hostregexp(`{host:.+}`)"
+   - "traefik.http.routers.http-catchall.entrypoints=traefik_network"
+   - "traefik.http.routers.http-catchall.middlewares=redirect-to-https"
+   - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
+   - "traefik.http.routers.traefik-secure.entrypoints=traefik_network_secure"
+   - "traefik.http.routers.traefik-secure.rule=Host(`traefik.supercompta.com`)"
+   - "traefik.http.routers.traefik-secure.service=api@internal"
+
+networks:
+ traefik_network:
+  external: true

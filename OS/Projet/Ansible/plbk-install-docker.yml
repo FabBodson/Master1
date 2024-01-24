@@ -1,0 +1,10 @@
+---
+- name: "Install Docker on Debian"
+  hosts: debian
+  become: true
+  roles:
+    - role: install_docker
+      tags: docker
+
+    - role: install_services
+      tags: services
